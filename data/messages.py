@@ -135,6 +135,7 @@ REMINDER_MESSAGES = [
 ]
 
 DRINK_CONFIRMATIONS = [
+    # Original
     "Excellent! Your hero feels refreshed. +{gold} Gold, +{wood} Wood, +{ore} Ore!",
     "The troops cheer! Resources gained: +{gold} Gold, +{wood} Wood, +{ore} Ore",
     "Splendid hydration! Your treasury grows: +{gold} Gold, +{wood} Wood, +{ore} Ore",
@@ -142,12 +143,83 @@ DRINK_CONFIRMATIONS = [
     "Your kingdom prospers! +{gold} Gold, +{wood} Wood, +{ore} Ore earned!",
     "The Water Elementals are pleased! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
     "Victory! Each sip brings you closer to glory. +{gold} Gold, +{wood} Wood, +{ore} Ore",
+
+    # Resource mine themed
+    "You've captured a Gold Mine! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Ore Pit secured! Resources flow: +{gold} Gold, +{wood} Wood, +{ore} Ore",
+    "Sawmill activated! +{gold} Gold, +{wood} Wood, +{ore} Ore added!",
+    "Crystal Cavern discovered! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Resource depot raided! Loot: +{gold} Gold, +{wood} Wood, +{ore} Ore",
+
+    # Combat victory themed
+    "CRUSHING VICTORY! The enemy flees! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Flawless battle! No casualties, maximum loot: +{gold} Gold, +{wood} Wood, +{ore} Ore",
+    "The battlefield is yours! Spoils: +{gold} Gold, +{wood} Wood, +{ore} Ore",
+    "Enemy hero defeated! Treasury gains: +{gold} Gold, +{wood} Wood, +{ore} Ore",
+    "Your Archangels smile upon you! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+
+    # Creature themed
+    "The Dragons approve! +{gold} Gold, +{wood} Wood, +{ore} Ore hoarded!",
+    "Titans nod in respect! +{gold} Gold, +{wood} Wood, +{ore} Ore earned!",
+    "Your Behemoth roars with joy! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Phoenix blessing activated! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "The Nagas dance! +{gold} Gold, +{wood} Wood, +{ore} Ore tribute received!",
+
+    # Town themed
+    "Castle treasury updated: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Rampart nature spirits rejoice! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Tower research funded: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Stronghold war chest grows: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Fortress coffers filled: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+
+    # Artifact themed
+    "Endless Bag of Gold activated! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Cornucopia effect: +{gold} Gold, +{wood} Wood, +{ore} Ore generated!",
+    "Equipping Ring of Wealth... +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Golden Goose syndrome! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+
+    # Spell themed
+    "Gold transmutation complete! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Summoning resources... +{gold} Gold, +{wood} Wood, +{ore} Ore appeared!",
+    "Midas Touch applied! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+
+    # Luck & morale themed
+    "LUCKY! Double resources: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "HIGH MORALE! Bonus loot: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Critical hydration! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Blessed by the heavens! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+
+    # Funny/meta
+    "Achievement: 'Hydrated' - Reward: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Quest completed! +{gold} Gold, +{wood} Wood, +{ore} Ore deposited!",
+    "Daily bonus claimed! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Speedrun PB! Resources: +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "New high score! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "GG EZ! +{gold} Gold, +{wood} Wood, +{ore} Ore in the bag!",
+    "Skill issue? Not anymore! +{gold} Gold, +{wood} Wood, +{ore} Ore!",
+    "Built different. +{gold} Gold, +{wood} Wood, +{ore} Ore earned!",
 ]
 
 LEVEL_UP_MESSAGES = [
+    # Original
     "LEVEL UP! You have evolved from {old_class} to {new_class}!",
     "Promotion! The {old_class} has become a mighty {new_class}!",
     "Glory! Your {old_class} transforms into {new_class}!",
+
+    # Epic upgrades
+    "UPGRADE COMPLETE! {old_class} -> {new_class}! The kingdom celebrates!",
+    "Transformation! Your {old_class} ascends to become {new_class}!",
+    "The Mage Guild confirms: {old_class} is now {new_class}!",
+    "Evolution triggered! {old_class} evolves into {new_class}!",
+    "LEGENDARY UPGRADE! From humble {old_class} to mighty {new_class}!",
+    "The prophecy fulfilled! {old_class} becomes {new_class}!",
+    "Castle upgraded! {old_class} dwelling now produces {new_class}!",
+    "Ancient ritual complete! {old_class} -> {new_class}!",
+    "The Grail's power transforms {old_class} into {new_class}!",
+    "RANK UP! {old_class} has earned the title of {new_class}!",
+    "Congratulations! Your {old_class} trained hard and became {new_class}!",
+    "New creature unlocked: {new_class}! (Previously: {old_class})",
+    "Hill Fort upgrade: {old_class} -> {new_class}! Looking sharp!",
 ]
 
 STREAK_MESSAGES = {
