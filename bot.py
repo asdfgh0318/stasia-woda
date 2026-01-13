@@ -6,7 +6,7 @@ from telegram.ext import Application, CommandHandler
 
 from config import BOT_TOKEN
 from database import init_db
-from handlers import start, help_command, drink, status, stats, streak, castle, hero
+from handlers import start, help_command, drink, status, stats, streak, castle, hero, leaderboard
 from handlers.reminders import setup_reminders
 
 # Set up logging
@@ -39,6 +39,7 @@ def main():
     application.add_handler(CommandHandler("streak", streak))
     application.add_handler(CommandHandler("castle", castle))
     application.add_handler(CommandHandler("hero", hero))
+    application.add_handler(CommandHandler("leaderboard", leaderboard))
 
     # Set up scheduled reminders
     setup_reminders(application)

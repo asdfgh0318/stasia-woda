@@ -278,3 +278,29 @@ def get_all_users() -> list:
     users = [row[0] for row in cursor.fetchall()]
     conn.close()
     return users
+
+
+def get_leaderboard(limit: int = 10) -> list:
+    """Get top users by total glasses for leaderboard."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT telegram_id, username, hero_class, total_glasses, current_streak, best_streak
+        FROM users
+        ORDER BY total_glasses DESC
+        LIMIT ?
+    """, (limit,))
+    rows = cursor.fetchall()
+    conn.close()
+
+    return [
+        {
+            "telegram_id": row[0],
+            "username": row[1],
+            "hero_class": row[2],
+            "total_glasses": row[3],
+            "current_streak": row[4],
+            "best_streak": row[5],
+        }
+        for row in rows
+    ]

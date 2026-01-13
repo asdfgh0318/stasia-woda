@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from database import get_or_create_user, log_water, get_today_glasses, get_user_stats, update_streak, add_achievement
+from database import get_or_create_user, log_water, get_today_glasses, get_user_stats, update_streak, add_achievement, get_leaderboard
 from data.messages import get_drink_confirmation, get_level_up_message
 from data.achievements import get_hero_class, get_next_hero_class
 from game.progression import check_level_up, get_progress_to_next_level, get_progress_bar
@@ -36,6 +36,7 @@ Your quest: drink water, gain power, build your castle!
 /streak - View your streak
 /castle - See your castle
 /hero - View hero progression
+/leaderboard - Compare with other heroes
 /help - Show all commands
 
 Let the hydration begin!
@@ -58,6 +59,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 /streak - Current and best streak
 /hero - Hero class and progression
 /castle - View your castle
+/leaderboard - Hall of Heroes rankings
 
 **Info:**
 /help - Show this help message
@@ -287,5 +289,51 @@ Total glasses: {stats_data['total_glasses']}
 ⚡ Titan (1200)
 🐉 Ancient Behemoth (2000)
 """
+
+    await update.message.reply_text(response, parse_mode="Markdown")
+
+
+async def leaderboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /leaderboard command - show top players."""
+    user = update.effective_user
+    get_or_create_user(user.id, user.username)
+
+    top_users = get_leaderboard(10)
+
+    if not top_users:
+        await update.message.reply_text("No heroes have joined the quest yet!")
+        return
+
+    response = "**Leaderboard - Hall of Heroes**\n\n"
+
+    medal_icons = ["🥇", "🥈", "🥉"]
+    hero_icons = {
+        "Peasant": "🧑‍🌾",
+        "Pikeman": "🗡️",
+        "Archer": "🏹",
+        "Swordsman": "⚔️",
+        "Griffin Rider": "🦅",
+        "Cavalier": "🐴",
+        "Crusader": "🛡️",
+        "Champion": "⚜️",
+        "Paladin": "✨",
+        "Archangel": "👼",
+        "Titan": "⚡",
+        "Ancient Behemoth": "🐉",
+    }
+
+    for i, player in enumerate(top_users):
+        rank_icon = medal_icons[i] if i < 3 else f"{i + 1}."
+        hero_icon = hero_icons.get(player["hero_class"], "🧑‍🌾")
+        name = player["username"] or "Anonymous Hero"
+
+        # Highlight current user
+        if player["telegram_id"] == user.id:
+            name = f"**{name}** (you)"
+
+        response += f"{rank_icon} {hero_icon} {name}\n"
+        response += f"    💧 {player['total_glasses']} glasses | 🔥 {player['current_streak']} day streak\n\n"
+
+    response += "_Keep drinking to climb the ranks!_"
 
     await update.message.reply_text(response, parse_mode="Markdown")

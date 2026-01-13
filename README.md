@@ -71,6 +71,7 @@ Tent (0) -> Camp (10) -> Outpost (30) -> Village (60)
 | `/streak` | Current and best streak |
 | `/castle` | View your ASCII castle |
 | `/hero` | View hero progression |
+| `/leaderboard` | Hall of Heroes rankings |
 
 ---
 
@@ -299,7 +300,7 @@ stasia-woda/
 
 - [ ] Weekly "battle" reports
 - [x] Multiple user support
-- [ ] Leaderboards
+- [x] Leaderboards
 - [ ] Custom reminder schedules
 - [ ] Image generation for castle
 - [ ] Difficulty modes (reminder frequency)
