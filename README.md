@@ -143,12 +143,25 @@ git push -u origin master
 
 That's it! No need to configure user IDs - anyone who uses the bot will automatically receive reminders.
 
-#### 5. Enable Metal Build (Recommended)
+#### 5. Add Persistent Storage (Important!)
+Without this step, user data will be lost on every redeploy!
+
+1. Click on the **stasia-woda** service
+2. Go to **"Settings"** tab
+3. Scroll to **"Volumes"** section
+4. Click **"Add Volume"**
+5. Set mount path to: `/data`
+6. Click **"Add"**
+7. Redeploy the service
+
+Your database will now persist across deployments.
+
+#### 6. Enable Metal Build (Recommended)
 1. Go to **Settings** -> **Build**
 2. Enable **Metal Build Environment**
 3. Redeploy
 
-#### 6. Verify Deployment
+#### 7. Verify Deployment
 1. Go to **Deployments** tab
 2. Check latest deployment shows **Success**
 3. Check **Logs** tab for: `Starting HydraHeroes bot...`
@@ -223,7 +236,21 @@ Railway -> your service -> **Logs** tab
 
 ---
 
+## Data Persistence
+
+User data (scores, streaks, achievements) is stored in a SQLite database.
+
+**Railway:** Data is stored in `/data/hydra_heroes.db` using a persistent volume. Make sure you've added a volume mounted at `/data` (see step 5 in deployment).
+
+**Local:** Data is stored in `hydra_heroes.db` in the project directory.
+
+---
+
 ## Troubleshooting
+
+### User data lost after redeploy
+- Make sure you've added a Railway volume mounted at `/data`
+- Go to Settings -> Volumes -> Add Volume -> Mount path: `/data`
 
 ### "Invalid Token" Error
 - Token is **case-sensitive** - copy exactly from BotFather

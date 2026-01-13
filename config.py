@@ -11,8 +11,8 @@ REMINDER_INTERVAL_HOURS = 2
 REMINDER_START_HOUR = 8  # 8 AM
 REMINDER_END_HOUR = 22   # 10 PM
 
-# Database
-DATABASE_PATH = "hydra_heroes.db"
+# Database - use /data for Railway persistent volume, fallback to local for development
+DATABASE_PATH = os.getenv("DATABASE_PATH", "/data/hydra_heroes.db" if os.path.exists("/data") else "hydra_heroes.db")
 
 # Game settings
 GLASSES_PER_DAY_GOAL = 8
