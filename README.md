@@ -146,13 +146,24 @@ That's it! No need to configure user IDs - anyone who uses the bot will automati
 #### 5. Add Persistent Storage (Important!)
 Without this step, user data will be lost on every redeploy!
 
-1. Click on the **stasia-woda** service
-2. Go to **"Settings"** tab
-3. Scroll to **"Volumes"** section
-4. Click **"Add Volume"**
-5. Set mount path to: `/data`
-6. Click **"Add"**
-7. Redeploy the service
+**Method 1: Right-click (Easiest)**
+1. **Right-click** anywhere on the project canvas (empty space)
+2. Select **"Add Volume"**
+3. Set mount path to: `/data`
+4. Connect it to your **stasia-woda** service
+5. Redeploy the service
+
+**Method 2: Command Palette**
+1. Press **Cmd+K** (Mac) or **Ctrl+K** (Windows/Linux)
+2. Type **"volume"** and select **"Create Volume"**
+3. Set mount path to: `/data`
+4. Attach to your service and redeploy
+
+**Verify it works:**
+1. Send `/drink` to the bot a few times
+2. Check `/status` to see your count
+3. Redeploy the service on Railway
+4. Check `/status` again - if count persists, volume works!
 
 Your database will now persist across deployments.
 
@@ -244,13 +255,34 @@ User data (scores, streaks, achievements) is stored in a SQLite database.
 
 **Local:** Data is stored in `hydra_heroes.db` in the project directory.
 
+### Storage Estimates (Railway Free Plan: 500MB)
+
+| Data Type | Size per record | 500MB can store |
+|-----------|-----------------|-----------------|
+| User profile | ~500 bytes | ~1,000,000 users |
+| Drink log | ~100 bytes | ~5,000,000 drinks |
+| Achievement | ~100 bytes | ~5,000,000 achievements |
+
+**Per active user per year:** ~185 KB (1 profile + 1,825 drink logs + achievements)
+
+| Users | How long 500MB lasts |
+|-------|----------------------|
+| 1-10 | Forever (decades) |
+| 10-100 | Many years |
+| 100-500 | Several years |
+| 500+ | 1-2 years, then upgrade |
+
+For a friend group or small community, 500MB will last years.
+
 ---
 
 ## Troubleshooting
 
 ### User data lost after redeploy
 - Make sure you've added a Railway volume mounted at `/data`
-- Go to Settings -> Volumes -> Add Volume -> Mount path: `/data`
+- Right-click project canvas -> Add Volume -> Mount path: `/data`
+- Or use Cmd+K / Ctrl+K -> "Create Volume"
+- Verify: send `/drink`, redeploy, check `/status` - count should persist
 
 ### "Invalid Token" Error
 - Token is **case-sensitive** - copy exactly from BotFather
