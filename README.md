@@ -7,9 +7,9 @@ A Telegram bot that reminds your friend to drink water, gamified with Heroes of 
 ## Core Features
 
 ### 1. Scheduled Water Reminders
-- Configurable intervals (default: every 2 hours, 8am-10pm)
-- Random themed messages from a pool of HoMM3-inspired texts
-- Example: *"Your troops grow weary! Restore movement points by drinking water."*
+- Automatic reminders every 2 hours (8am-10pm)
+- 90+ HoMM3-themed random messages
+- Creature, spell, artifact, and hero references
 
 ### 2. Water Intake Logging
 - `/drink` - Log a glass of water (+1)
@@ -18,31 +18,41 @@ A Telegram bot that reminds your friend to drink water, gamified with Heroes of 
 
 ### 3. HoMM3 Gamification System
 
-#### Hero Progression
-Start as a **Peasant**, level up based on total water logged:
+#### Hero Progression (12 Classes)
+Level up based on total water logged:
 ```
-Peasant (0) -> Pikeman (50) -> Swordsman (150) -> Crusader (400) -> Champion (800) -> Angel (1500)
+🧑‍🌾 Peasant (0)
+🗡️ Pikeman (10)
+🏹 Archer (30)
+⚔️ Swordsman (60)
+🦅 Griffin Rider (100)
+🐴 Cavalier (175)
+🛡️ Crusader (275)
+⚜️ Champion (400)
+✨ Paladin (600)
+👼 Archangel (850)
+⚡ Titan (1200)
+🐉 Ancient Behemoth (2000)
+```
+
+#### Castle Building (12 Tiers)
+Your castle grows with your hydration:
+```
+⛺ Tent (0) → 🏕️ Camp (10) → 🗼 Outpost (30) → 🏘️ Village (60)
+→ 🏛️ Town (100) → 🏰 Stronghold (175) → 🏯 Castle (275)
+→ 🏰 Fortress (400) → 🏰 Citadel (600) → 🏛️ Capitol (850)
+→ 🏆 Grail Temple (1200) → ✨ Celestial Palace (2000)
 ```
 
 #### Streak System (Consecutive Days)
 - 3 days: Unlock "Morale Boost" badge
-- 7 days: Earn "Logistics" artifact (+bonus message)
+- 7 days: Earn "Logistics" artifact
 - 14 days: Earn "Angel Wings" artifact
 - 30 days: Legendary "Grail" status
 
-#### Daily Quests
-- "Drink 8 glasses today" = Capture a gold mine
-- "Log water before noon" = Ambush reward
-
 #### Resources Earned
 - Each glass = +10 Gold, +2 Wood, +1 Ore
-- Weekly: "Build" castle upgrades with resources
-- `/castle` - View your castle progress
-
-### 4. Stats & Charts
-- `/stats` - Daily/weekly/monthly breakdown
-- `/streak` - Current streak and best streak
-- `/leaderboard` - If multiple friends join
+- Resources displayed in castle view
 
 ---
 
@@ -56,7 +66,7 @@ Peasant (0) -> Pikeman (50) -> Swordsman (150) -> Crusader (400) -> Champion (80
 | `/status` | Today's progress and stats |
 | `/stats` | Detailed statistics |
 | `/streak` | Current and best streak |
-| `/castle` | View your castle |
+| `/castle` | View your ASCII castle |
 | `/hero` | View hero progression |
 
 ---
@@ -66,27 +76,25 @@ Peasant (0) -> Pikeman (50) -> Swordsman (150) -> Crusader (400) -> Champion (80
 ### Step 1: Create Telegram Bot with BotFather
 
 1. Open Telegram
-2. Search for **@BotFather** (look for the verified checkmark)
+2. Search for **@BotFather** (verified checkmark)
 3. Click **Start** or send `/start`
 4. Send `/newbot`
-5. When asked "What name do you want for your bot?", enter:
+5. When asked for a name, enter something like:
    ```
    HydraHeroes
    ```
-   (This is the display name - can be anything)
-
-6. When asked "Choose a username for your bot", enter something like:
+6. When asked for a username, enter something like:
    ```
-   stasia_woda_bot
+   my_hydra_heroes_bot
    ```
-   (Must end in `bot` and be unique - try variations if taken)
+   (Must end in `bot` and be unique)
 
 7. BotFather will respond with your **bot token**:
    ```
    Use this token to access the HTTP API:
    7123456789:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
-   **Save this token!**
+   **Save this token! It's case-sensitive!**
 
 ### Step 2: Get the Recipient's Chat ID
 
@@ -103,14 +111,20 @@ The person who will receive reminders needs to:
 
 ### Option A: Deploy to Railway (Recommended)
 
-#### 1. Push to GitHub
+#### 1. Fork/Clone the repo
 ```bash
-git add -A
-git commit -m "Update"
-git push
+git clone https://github.com/asdfgh0318/stasia-woda.git
+cd stasia-woda
 ```
 
-#### 2. Create Railway Project
+#### 2. Push to your GitHub
+```bash
+# Create new repo on GitHub, then:
+git remote set-url origin https://github.com/YOUR_USERNAME/stasia-woda.git
+git push -u origin master
+```
+
+#### 3. Create Railway Project
 1. Go to **https://railway.app**
 2. Sign in with GitHub
 3. Click **"New Project"**
@@ -118,24 +132,31 @@ git push
 5. Find and select **stasia-woda**
 6. Click **"Deploy Now"**
 
-#### 3. Add Environment Variables
+#### 4. Add Environment Variables
 1. Click on the **stasia-woda** service
 2. Go to **"Variables"** tab
 3. Add these variables:
 
 | Variable | Value |
 |----------|-------|
-| `BOT_TOKEN` | Your token from BotFather |
+| `BOT_TOKEN` | Your token from BotFather (case-sensitive!) |
 | `ADMIN_CHAT_ID` | Recipient's Telegram ID |
 
-#### 4. Deploy
-Railway will auto-redeploy after adding variables. If not, go to "Deployments" tab and click "Redeploy".
+#### 5. Enable Metal Build (Recommended)
+1. Go to **Settings** → **Build**
+2. Enable **Metal Build Environment**
+3. Redeploy
+
+#### 6. Verify Deployment
+1. Go to **Deployments** tab
+2. Check latest deployment shows **Success**
+3. Check **Logs** tab for: `Starting HydraHeroes bot...`
 
 ### Option B: Run Locally
 
 #### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/stasia-woda.git
+git clone https://github.com/asdfgh0318/stasia-woda.git
 cd stasia-woda
 ```
 
@@ -167,66 +188,59 @@ python bot.py
 ## Testing the Bot
 
 ### 1. Find Your Bot
-Open Telegram and search for your bot username (e.g., `@stasia_woda_bot`)
+Open Telegram and go to: `t.me/YOUR_BOT_USERNAME`
 
 ### 2. Start It
-Send:
 ```
 /start
 ```
-You should see the welcome message with the Peasant introduction.
+You should see the welcome message.
 
-### 3. Test Core Commands
+### 3. Test Commands
+```
+/drink        # Log a glass, earn resources
+/drink 5      # Log 5 glasses
+/status       # Today's progress
+/castle       # See ASCII castle art
+/hero         # See all 12 hero classes
+/stats        # Detailed statistics
+/streak       # Streak info
+```
 
-**Log water:**
-```
-/drink
-```
-(Log a glass, earn resources)
+### 4. Check Logs (if issues)
+Railway → your service → **Logs** tab
 
-```
-/drink 3
-```
-(Log 3 glasses at once)
+---
 
-**Check progress:**
-```
-/status
-```
-(See today's progress)
+## Troubleshooting
 
-**View castle:**
-```
-/castle
-```
-(See your ASCII castle)
+### "Invalid Token" Error
+- Token is **case-sensitive** - copy exactly from BotFather
+- Go to @BotFather → `/mybots` → select bot → "API Token" to verify
 
-**View hero:**
-```
-/hero
-```
-(See progression to next level)
+### Bot not responding
+- Check Railway logs for errors
+- Verify `BOT_TOKEN` and `ADMIN_CHAT_ID` are set correctly
+- Try redeploying
 
-**Detailed stats:**
-```
-/stats
-```
-(Full statistics breakdown)
+### Old version running
+- Check Railway **Deployments** tab for latest commit hash
+- If outdated, click **Redeploy** or reconnect GitHub repo
 
-### 4. Check Logs (if something doesn't work)
-1. Go to your Railway project
-2. Click the **stasia-woda** service
-3. Click **"Logs"** tab
+### Can't find bot in Telegram search
+- New bots may take time to appear in search
+- Use direct link: `t.me/YOUR_BOT_USERNAME`
+- Check @BotFather → `/mybots` for exact username
 
 ---
 
 ## Tech Stack
 
 - **Language**: Python 3.11+
-- **Bot Library**: `python-telegram-bot` v20+
-- **Scheduler**: Built-in `JobQueue` from python-telegram-bot
-- **Database**: SQLite (simple, no external deps)
-- **Hosting**: Railway (free tier)
+- **Bot Library**: `python-telegram-bot[job-queue]` v20+
+- **Scheduler**: APScheduler (via JobQueue)
+- **Database**: SQLite
+- **Hosting**: Railway
 
 ---
 
@@ -234,49 +248,53 @@ You should see the welcome message with the Peasant introduction.
 
 ```
 stasia-woda/
-├── bot.py              # Main bot entry point
-├── config.py           # Bot token, settings
+├── bot.py              # Main entry point
+├── config.py           # Settings & environment vars
+├── Dockerfile          # Container configuration
 ├── handlers/
-│   ├── commands.py     # /drink, /status, /stats, /castle
+│   ├── commands.py     # /drink, /status, /castle, /hero
 │   ├── callbacks.py    # Button callbacks
 │   └── reminders.py    # Scheduled reminder logic
 ├── game/
-│   ├── progression.py  # Hero levels, XP calculation
-│   ├── streaks.py      # Streak tracking logic
-│   ├── resources.py    # Gold, wood, ore tracking
-│   └── castle.py       # Castle building system
+│   ├── progression.py  # Hero levels, XP
+│   ├── streaks.py      # Streak tracking
+│   ├── resources.py    # Gold, wood, ore
+│   └── castle.py       # 12 castle tiers with ASCII art
 ├── data/
-│   ├── messages.py     # Pool of themed reminder messages
-│   └── achievements.py # Achievement definitions
+│   ├── messages.py     # 90+ reminder messages, 40+ confirmations
+│   └── achievements.py # 12 hero classes, achievements
 ├── database/
 │   ├── models.py       # SQLite schema
 │   └── queries.py      # DB operations
 ├── requirements.txt
-├── railway.json        # Railway deployment config
 └── README.md
 ```
 
 ---
 
-## Sample Reminder Messages
+## Sample Messages
 
-- "Your army thirsts for battle... and water! Drink now to restore movement points."
-- "A wise ruler keeps their kingdom hydrated. Time for water!"
-- "The Necromancers don't need water, but YOU do. Drink up!"
-- "Even dragons take water breaks. Your turn, hero!"
-- "Ancient wisdom says: 'He who drinks water, wins wars.' Trust the scroll."
-- "Your mana is running low! Restore it with H2O."
-- "Defend your health! Drink water before the enemy (dehydration) attacks."
-- "+1 Morale if you drink water in the next 5 minutes!"
-- "Heroes don't get dehydrated. Prove you're worthy!"
-- "The Water Elementals demand tribute. One glass, please."
+**Reminders:**
+- "The Titans have spoken from their cloud temples: DRINK WATER, MORTAL."
+- "The Hydra has 8 heads. You should drink 8 glasses. Coincidence?"
+- "Speedrun strats: Hydration skips the 'Passing Out' cutscene."
+- "Your Behemoths are getting cranky. They want you to drink water."
+
+**Drink Confirmations:**
+- "CRUSHING VICTORY! The enemy flees! +10 Gold, +2 Wood, +1 Ore!"
+- "The Dragons approve! +10 Gold, +2 Wood, +1 Ore hoarded!"
+- "GG EZ! +10 Gold, +2 Wood, +1 Ore in the bag!"
+
+**Level Ups:**
+- "Hill Fort upgrade: Peasant -> Pikeman! Looking sharp!"
+- "The Grail's power transforms Swordsman into Crusader!"
 
 ---
 
 ## Future Enhancements
 
-- Weekly "battle" reports
-- Multiple user support / leaderboards
-- Image generation for castle visualization
-- Integration with health apps
-- Difficulty modes (Casual/Normal/Heroic reminder frequency)
+- [ ] Weekly "battle" reports
+- [ ] Multiple user support / leaderboards
+- [ ] Custom reminder schedules
+- [ ] Image generation for castle
+- [ ] Difficulty modes (reminder frequency)
