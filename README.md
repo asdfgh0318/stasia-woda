@@ -1,6 +1,8 @@
 # HydraHeroes: Heroes 3 Themed Water Reminder Bot
 
-A Telegram bot that reminds your friend to drink water, gamified with Heroes of Might and Magic 3 themes. Built with Python, hosted on Railway.
+A Telegram bot that reminds you and your friends to drink water, gamified with Heroes of Might and Magic 3 themes. Built with Python, hosted on Railway.
+
+**Multi-user support:** Anyone who interacts with the bot automatically receives reminders!
 
 ---
 
@@ -10,6 +12,7 @@ A Telegram bot that reminds your friend to drink water, gamified with Heroes of 
 - Automatic reminders every 2 hours (8am-10pm)
 - 90+ HoMM3-themed random messages
 - Creature, spell, artifact, and hero references
+- **Multi-user:** All registered users receive reminders
 
 ### 2. Water Intake Logging
 - `/drink` - Log a glass of water (+1)
@@ -21,27 +24,27 @@ A Telegram bot that reminds your friend to drink water, gamified with Heroes of 
 #### Hero Progression (12 Classes)
 Level up based on total water logged:
 ```
-🧑‍🌾 Peasant (0)
-🗡️ Pikeman (10)
-🏹 Archer (30)
-⚔️ Swordsman (60)
-🦅 Griffin Rider (100)
-🐴 Cavalier (175)
-🛡️ Crusader (275)
-⚜️ Champion (400)
-✨ Paladin (600)
-👼 Archangel (850)
-⚡ Titan (1200)
-🐉 Ancient Behemoth (2000)
+Peasant (0)
+Pikeman (10)
+Archer (30)
+Swordsman (60)
+Griffin Rider (100)
+Cavalier (175)
+Crusader (275)
+Champion (400)
+Paladin (600)
+Archangel (850)
+Titan (1200)
+Ancient Behemoth (2000)
 ```
 
 #### Castle Building (12 Tiers)
 Your castle grows with your hydration:
 ```
-⛺ Tent (0) → 🏕️ Camp (10) → 🗼 Outpost (30) → 🏘️ Village (60)
-→ 🏛️ Town (100) → 🏰 Stronghold (175) → 🏯 Castle (275)
-→ 🏰 Fortress (400) → 🏰 Citadel (600) → 🏛️ Capitol (850)
-→ 🏆 Grail Temple (1200) → ✨ Celestial Palace (2000)
+Tent (0) -> Camp (10) -> Outpost (30) -> Village (60)
+-> Town (100) -> Stronghold (175) -> Castle (275)
+-> Fortress (400) -> Citadel (600) -> Capitol (850)
+-> Grail Temple (1200) -> Celestial Palace (2000)
 ```
 
 #### Streak System (Consecutive Days)
@@ -96,15 +99,6 @@ Your castle grows with your hydration:
    ```
    **Save this token! It's case-sensitive!**
 
-### Step 2: Get the Recipient's Chat ID
-
-The person who will receive reminders needs to:
-
-1. Open Telegram
-2. Search for **@userinfobot**
-3. Send `/start`
-4. Copy the **ID** number (e.g., `123456789`)
-
 ---
 
 ## Deployment
@@ -135,15 +129,16 @@ git push -u origin master
 #### 4. Add Environment Variables
 1. Click on the **stasia-woda** service
 2. Go to **"Variables"** tab
-3. Add these variables:
+3. Add this variable:
 
 | Variable | Value |
 |----------|-------|
 | `BOT_TOKEN` | Your token from BotFather (case-sensitive!) |
-| `ADMIN_CHAT_ID` | Recipient's Telegram ID |
+
+That's it! No need to configure user IDs - anyone who uses the bot will automatically receive reminders.
 
 #### 5. Enable Metal Build (Recommended)
-1. Go to **Settings** → **Build**
+1. Go to **Settings** -> **Build**
 2. Enable **Metal Build Environment**
 3. Redeploy
 
@@ -172,16 +167,25 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Edit `.env` and add your values:
+Edit `.env` and add your bot token:
 ```
 BOT_TOKEN=7123456789:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ADMIN_CHAT_ID=123456789
 ```
 
 #### 4. Run
 ```bash
 python bot.py
 ```
+
+---
+
+## Adding Users
+
+Users are added automatically! Just share your bot link (`t.me/YOUR_BOT_USERNAME`) with friends. When they:
+1. Open the bot and send `/start`
+2. Use any command like `/drink`
+
+They'll be registered and start receiving reminders at the scheduled times.
 
 ---
 
@@ -208,7 +212,7 @@ You should see the welcome message.
 ```
 
 ### 4. Check Logs (if issues)
-Railway → your service → **Logs** tab
+Railway -> your service -> **Logs** tab
 
 ---
 
@@ -216,11 +220,11 @@ Railway → your service → **Logs** tab
 
 ### "Invalid Token" Error
 - Token is **case-sensitive** - copy exactly from BotFather
-- Go to @BotFather → `/mybots` → select bot → "API Token" to verify
+- Go to @BotFather -> `/mybots` -> select bot -> "API Token" to verify
 
 ### Bot not responding
 - Check Railway logs for errors
-- Verify `BOT_TOKEN` and `ADMIN_CHAT_ID` are set correctly
+- Verify `BOT_TOKEN` is set correctly
 - Try redeploying
 
 ### Old version running
@@ -230,7 +234,7 @@ Railway → your service → **Logs** tab
 ### Can't find bot in Telegram search
 - New bots may take time to appear in search
 - Use direct link: `t.me/YOUR_BOT_USERNAME`
-- Check @BotFather → `/mybots` for exact username
+- Check @BotFather -> `/mybots` for exact username
 
 ---
 
@@ -254,7 +258,7 @@ stasia-woda/
 ├── handlers/
 │   ├── commands.py     # /drink, /status, /castle, /hero
 │   ├── callbacks.py    # Button callbacks
-│   └── reminders.py    # Scheduled reminder logic
+│   └── reminders.py    # Scheduled reminder logic (multi-user)
 ├── game/
 │   ├── progression.py  # Hero levels, XP
 │   ├── streaks.py      # Streak tracking
@@ -294,7 +298,8 @@ stasia-woda/
 ## Future Enhancements
 
 - [ ] Weekly "battle" reports
-- [ ] Multiple user support / leaderboards
+- [x] Multiple user support
+- [ ] Leaderboards
 - [ ] Custom reminder schedules
 - [ ] Image generation for castle
 - [ ] Difficulty modes (reminder frequency)

@@ -268,3 +268,13 @@ def update_hero_class(telegram_id: int, hero_class: str):
     cursor.execute("UPDATE users SET hero_class = ? WHERE telegram_id = ?", (hero_class, telegram_id))
     conn.commit()
     conn.close()
+
+
+def get_all_users() -> list:
+    """Get all registered users (for broadcasting reminders)."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT telegram_id FROM users")
+    users = [row[0] for row in cursor.fetchall()]
+    conn.close()
+    return users
