@@ -57,6 +57,11 @@ Tent (0) -> Camp (10) -> Outpost (30) -> Village (60)
 - Each glass = +10 Gold, +2 Wood, +1 Ore
 - Resources displayed in castle view
 
+#### Leaderboard
+- Compare your progress with other heroes
+- Top 10 players ranked by total glasses
+- Shows hero class, streak, and hydration stats
+
 ---
 
 ## Commands
@@ -210,6 +215,7 @@ You should see the welcome message.
 /hero         # See all 12 hero classes
 /stats        # Detailed statistics
 /streak       # Streak info
+/leaderboard  # Compare with other heroes
 ```
 
 ### 4. Check Logs (if issues)
@@ -257,7 +263,7 @@ stasia-woda/
 ├── config.py           # Settings & environment vars
 ├── Dockerfile          # Container configuration
 ├── handlers/
-│   ├── commands.py     # /drink, /status, /castle, /hero
+│   ├── commands.py     # /drink, /status, /castle, /hero, /leaderboard
 │   ├── callbacks.py    # Button callbacks
 │   └── reminders.py    # Scheduled reminder logic (multi-user)
 ├── game/
