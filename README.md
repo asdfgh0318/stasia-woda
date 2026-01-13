@@ -1,6 +1,6 @@
 # HydraHeroes: Heroes 3 Themed Water Reminder Bot
 
-A Telegram bot that reminds your friend to drink water, gamified with Heroes of Might and Magic 3 themes. Built with Python, hosted on Railway/Render.
+A Telegram bot that reminds your friend to drink water, gamified with Heroes of Might and Magic 3 themes. Built with Python, hosted on Railway.
 
 ---
 
@@ -46,7 +46,182 @@ Peasant (0) -> Pikeman (50) -> Swordsman (150) -> Crusader (400) -> Champion (80
 
 ---
 
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `/start` | Welcome message and setup |
+| `/help` | Show all commands |
+| `/drink [n]` | Log water intake (default: 1 glass) |
+| `/status` | Today's progress and stats |
+| `/stats` | Detailed statistics |
+| `/streak` | Current and best streak |
+| `/castle` | View your castle |
+| `/hero` | View hero progression |
+
+---
+
+## Setup Guide
+
+### Step 1: Create Telegram Bot with BotFather
+
+1. Open Telegram
+2. Search for **@BotFather** (look for the verified checkmark)
+3. Click **Start** or send `/start`
+4. Send `/newbot`
+5. When asked "What name do you want for your bot?", enter:
+   ```
+   HydraHeroes
+   ```
+   (This is the display name - can be anything)
+
+6. When asked "Choose a username for your bot", enter something like:
+   ```
+   stasia_woda_bot
+   ```
+   (Must end in `bot` and be unique - try variations if taken)
+
+7. BotFather will respond with your **bot token**:
+   ```
+   Use this token to access the HTTP API:
+   7123456789:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+   **Save this token!**
+
+### Step 2: Get the Recipient's Chat ID
+
+The person who will receive reminders needs to:
+
+1. Open Telegram
+2. Search for **@userinfobot**
+3. Send `/start`
+4. Copy the **ID** number (e.g., `123456789`)
+
+---
+
+## Deployment
+
+### Option A: Deploy to Railway (Recommended)
+
+#### 1. Push to GitHub
+```bash
+git add -A
+git commit -m "Update"
+git push
+```
+
+#### 2. Create Railway Project
+1. Go to **https://railway.app**
+2. Sign in with GitHub
+3. Click **"New Project"**
+4. Select **"Deploy from GitHub repo"**
+5. Find and select **stasia-woda**
+6. Click **"Deploy Now"**
+
+#### 3. Add Environment Variables
+1. Click on the **stasia-woda** service
+2. Go to **"Variables"** tab
+3. Add these variables:
+
+| Variable | Value |
+|----------|-------|
+| `BOT_TOKEN` | Your token from BotFather |
+| `ADMIN_CHAT_ID` | Recipient's Telegram ID |
+
+#### 4. Deploy
+Railway will auto-redeploy after adding variables. If not, go to "Deployments" tab and click "Redeploy".
+
+### Option B: Run Locally
+
+#### 1. Clone the repo
+```bash
+git clone https://github.com/YOUR_USERNAME/stasia-woda.git
+cd stasia-woda
+```
+
+#### 2. Create virtual environment
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### 3. Configure environment
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and add your values:
+```
+BOT_TOKEN=7123456789:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ADMIN_CHAT_ID=123456789
+```
+
+#### 4. Run
+```bash
+python bot.py
+```
+
+---
+
+## Testing the Bot
+
+### 1. Find Your Bot
+Open Telegram and search for your bot username (e.g., `@stasia_woda_bot`)
+
+### 2. Start It
+Send:
+```
+/start
+```
+You should see the welcome message with the Peasant introduction.
+
+### 3. Test Core Commands
+
+**Log water:**
+```
+/drink
+```
+(Log a glass, earn resources)
+
+```
+/drink 3
+```
+(Log 3 glasses at once)
+
+**Check progress:**
+```
+/status
+```
+(See today's progress)
+
+**View castle:**
+```
+/castle
+```
+(See your ASCII castle)
+
+**View hero:**
+```
+/hero
+```
+(See progression to next level)
+
+**Detailed stats:**
+```
+/stats
+```
+(Full statistics breakdown)
+
+### 4. Check Logs (if something doesn't work)
+1. Go to your Railway project
+2. Click the **stasia-woda** service
+3. Click **"Logs"** tab
+
+---
+
 ## Tech Stack
+
 - **Language**: Python 3.11+
 - **Bot Library**: `python-telegram-bot` v20+
 - **Scheduler**: Built-in `JobQueue` from python-telegram-bot
@@ -56,9 +231,11 @@ Peasant (0) -> Pikeman (50) -> Swordsman (150) -> Crusader (400) -> Champion (80
 ---
 
 ## Project Structure
+
 ```
 stasia-woda/
 ├── bot.py              # Main bot entry point
+├── config.py           # Bot token, settings
 ├── handlers/
 │   ├── commands.py     # /drink, /status, /stats, /castle
 │   ├── callbacks.py    # Button callbacks
@@ -74,60 +251,10 @@ stasia-woda/
 ├── database/
 │   ├── models.py       # SQLite schema
 │   └── queries.py      # DB operations
-├── config.py           # Bot token, settings
 ├── requirements.txt
+├── railway.json        # Railway deployment config
 └── README.md
 ```
-
----
-
-## Setup
-
-### 1. Create Telegram Bot
-1. Message [@BotFather](https://t.me/botfather) on Telegram
-2. Send `/newbot` and follow prompts
-3. Copy the bot token
-
-### 2. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Configure
-Create a `.env` file:
-```
-BOT_TOKEN=your_bot_token_here
-ADMIN_CHAT_ID=your_telegram_id
-```
-
-### 4. Run
-```bash
-python bot.py
-```
-
----
-
-## Deployment (Railway)
-
-1. Push to GitHub
-2. Connect repo to [Railway](https://railway.app)
-3. Add environment variables (`BOT_TOKEN`, `ADMIN_CHAT_ID`)
-4. Deploy!
-
----
-
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `/start` | Welcome message and setup |
-| `/help` | Show all commands |
-| `/drink [n]` | Log water intake (default: 1 glass) |
-| `/status` | Today's progress and stats |
-| `/stats` | Detailed statistics |
-| `/streak` | Current and best streak |
-| `/castle` | View your castle |
-| `/hero` | View hero progression |
 
 ---
 
@@ -147,6 +274,7 @@ python bot.py
 ---
 
 ## Future Enhancements
+
 - Weekly "battle" reports
 - Multiple user support / leaderboards
 - Image generation for castle visualization
