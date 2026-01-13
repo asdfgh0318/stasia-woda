@@ -30,6 +30,11 @@ def setup_reminders(application: Application):
     """Set up scheduled water reminders."""
     job_queue = application.job_queue
 
+    if job_queue is None:
+        print("Warning: JobQueue not available. Install with: pip install 'python-telegram-bot[job-queue]'")
+        print("Reminders disabled - bot will still work for commands.")
+        return
+
     if not ADMIN_CHAT_ID:
         print("Warning: ADMIN_CHAT_ID not set, reminders disabled")
         return
