@@ -274,12 +274,18 @@ Total glasses: {stats_data['total_glasses']}
         response += "**Maximum level reached!** You are legendary!\n\n"
 
     response += """**Hero Classes:**
- Peasant (0 glasses)
- Pikeman (50 glasses)
- Swordsman (150 glasses)
- Crusader (400 glasses)
- Champion (800 glasses)
- Angel (1500 glasses)
+🧑‍🌾 Peasant (0)
+🗡️ Pikeman (10)
+🏹 Archer (30)
+⚔️ Swordsman (60)
+🦅 Griffin Rider (100)
+🐴 Cavalier (175)
+🛡️ Crusader (275)
+⚜️ Champion (400)
+✨ Paladin (600)
+👼 Archangel (850)
+⚡ Titan (1200)
+🐉 Ancient Behemoth (2000)
 """
 
     await update.message.reply_text(response, parse_mode="Markdown")

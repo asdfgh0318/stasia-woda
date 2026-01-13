@@ -62,12 +62,22 @@ ACHIEVEMENTS = {
 }
 
 HERO_CLASSES = [
-    {"name": "Peasant", "min_glasses": 0, "icon": ""},
-    {"name": "Pikeman", "min_glasses": 50, "icon": ""},
-    {"name": "Swordsman", "min_glasses": 150, "icon": ""},
-    {"name": "Crusader", "min_glasses": 400, "icon": ""},
-    {"name": "Champion", "min_glasses": 800, "icon": ""},
-    {"name": "Angel", "min_glasses": 1500, "icon": ""},
+    # Tier 1-3: Common units
+    {"name": "Peasant", "min_glasses": 0, "icon": "🧑‍🌾"},
+    {"name": "Pikeman", "min_glasses": 10, "icon": "🗡️"},
+    {"name": "Archer", "min_glasses": 30, "icon": "🏹"},
+    # Tier 4-6: Trained soldiers
+    {"name": "Swordsman", "min_glasses": 60, "icon": "⚔️"},
+    {"name": "Griffin Rider", "min_glasses": 100, "icon": "🦅"},
+    {"name": "Cavalier", "min_glasses": 175, "icon": "🐴"},
+    # Tier 7-9: Elite warriors
+    {"name": "Crusader", "min_glasses": 275, "icon": "🛡️"},
+    {"name": "Champion", "min_glasses": 400, "icon": "⚜️"},
+    {"name": "Paladin", "min_glasses": 600, "icon": "✨"},
+    # Tier 10-12: Legendary beings
+    {"name": "Archangel", "min_glasses": 850, "icon": "👼"},
+    {"name": "Titan", "min_glasses": 1200, "icon": "⚡"},
+    {"name": "Ancient Behemoth", "min_glasses": 2000, "icon": "🐉"},
 ]
 
 def get_hero_class(total_glasses: int) -> dict:
