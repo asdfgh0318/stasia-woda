@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banner.svg" alt="stasia-woda banner" width="100%">
+</p>
+
 # HydraHeroes: Heroes 3 Themed Water Reminder Bot
 
 A Telegram bot that reminds you and your friends to drink water, gamified with Heroes of Might and Magic 3 themes. Built with Python, hosted on Railway.

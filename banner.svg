@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#1a1a3a"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4488ff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#4488ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4488ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4488ff" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#4488ff" stop-opacity="0.6"/>
+      <stop offset="80%" stop-color="#4488ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#4488ff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="120" fill="url(#bg)"/>
+  <rect y="90" width="1200" height="30" fill="url(#accent)"/>
+
+  <!-- Decorative dots -->
+  <circle cx="826" cy="64" r="1" fill="#4488ff" opacity="0.03"/>
+<circle cx="652" cy="18" r="2" fill="#4488ff" opacity="0.04"/>
+<circle cx="478" cy="72" r="3" fill="#4488ff" opacity="0.05"/>
+<circle cx="304" cy="26" r="1" fill="#4488ff" opacity="0.06"/>
+<circle cx="930" cy="80" r="2" fill="#4488ff" opacity="0.07"/>
+<circle cx="756" cy="34" r="3" fill="#4488ff" opacity="0.03"/>
+<circle cx="582" cy="88" r="1" fill="#4488ff" opacity="0.04"/>
+<circle cx="408" cy="42" r="2" fill="#4488ff" opacity="0.05"/>
+<circle cx="234" cy="96" r="3" fill="#4488ff" opacity="0.06"/>
+<circle cx="860" cy="50" r="1" fill="#4488ff" opacity="0.07"/>
+<circle cx="686" cy="104" r="2" fill="#4488ff" opacity="0.03"/>
+<circle cx="512" cy="58" r="3" fill="#4488ff" opacity="0.04"/>
+
+
+  <!-- Accent line -->
+  <line x1="0" y1="118" x2="1200" y2="118" stroke="url(#line)" stroke-width="2"/>
+
+  <!-- Icon -->
+  <g color="#4488ff">
+    <g transform="translate(80,40) scale(1)" opacity="0.12">
+      <path d="M30,0 Q0,40 30,60 Q60,40 30,0" fill="currentColor" opacity="0.5"/>
+      <path d="M30,10 Q10,40 30,52 Q50,40 30,10" fill="none" stroke="currentColor" stroke-width="2"/>
+    </g>
+    <g transform="translate(950,30) scale(0.8)" opacity="0.08">
+      <path d="M0,40 Q15,20 30,40 Q45,60 60,40 Q75,20 90,40" fill="none" stroke="currentColor" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="52" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="32" font-weight="700" fill="#e6edf3" text-anchor="middle" letter-spacing="1">Stasia Woda</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="78" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" fill="#8b949e" text-anchor="middle" letter-spacing="0.5">Heroes 3 themed water reminder Telegram bot</text>
+</svg>
